@@ -19,7 +19,7 @@ CATEGORY_FEED_ATOM = None
 TRANSLATION_FEED_ATOM = None
 AUTHOR_FEED_ATOM = None
 AUTHOR_FEED_RSS = None
-
+USE_FOLDER_AS_CATEGORY = True
 # Blogroll
 LINKS = (('Pelican', 'http://getpelican.com/'),
          ('Python.org', 'http://python.org/'),
@@ -41,12 +41,18 @@ def my_slugify(value, sep):
     m = hashlib.md5(value.encode('utf8'))
     # m = hashlib.md5(value)
     result = m.hexdigest()[:6]
-    print(result)
+    # print(result)
     return result
 MY_SLUGIFY_FUNC = my_slugify
 MY_TOC_LIST_TYPE = 'ol'
 from markdown.extensions.headerid import HeaderIdExtension
-MARKDOWN = {"extensions":["extra", HeaderIdExtension(configs=[('slugify', my_slugify)])]}
+MARKDOWN = {"extensions":["extra", "codehilite", HeaderIdExtension(configs=[('slugify', my_slugify)])]}
 # Uncomment following line if you want document-relative URLs when developing
 RELATIVE_URLS = True
 
+# NIUX2_PYGMENTS_THEME = 'monokai'
+NIUX2_HEADER_SECTIONS = [ 
+     ("关于", "about", "/pages/about.html", "icon-anchor"),
+     ("存档", "archives", "/archives.html", "icon-archive"),
+     ("标签", "tags", "/tags.html", "icon-tag"),
+]
